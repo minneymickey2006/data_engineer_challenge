@@ -180,7 +180,35 @@ The staging model is:
 
 - `gaming_analytics/models/staging/stg_game_performance.sql`
 
-This layer is responsible for:
+This is the main incremental staging model. It uses a composite key made up of:
+
+- `bus_date`
+- `venue_code`
+- `egm_description`
+- `manufacturer`
+- `fp`
+
+The model is configured as an incremental table, which means it only brings in rows that are newer than the latest date already in staging. This helps keep the warehouse efficient and avoids reprocessing the full raw dataset every run.
+
+Example configuration:
+
+```sql
+config(
+    materialized='incremental',
+    unique_key=['bus_date', 'venue_code', 'egm_description', 'manufacturer', 'fp']
+)
+```
+
+The incremental filter is:
+
+```sql
+where cast(bus_date as date) > (
+    select max(cast(bus_date as date))
+    from {{ this }}
+)
+```
+
+This layer is also responsible for:
 
 - casting date fields as `DATE`
 - keeping identifiers as integers
@@ -193,7 +221,7 @@ Example cast decisions in the staging model:
 cast(bus_date as date) as bus_date
 cast(turnover_sum as numeric(18,2)) as turnover_sum
 cast(gmp_sum as numeric(18,2)) as gmp_sum
-cast(games_played_sum as numeric(18,2)) as games_played_sum
+cast(games_played_sum as integer) as games_played_sum
 ```
 
 This matters because raw CSV values are often read as text or floats, and we want the final warehouse tables to behave consistently and predictably.
@@ -218,18 +246,25 @@ The project includes data quality checks for:
 
 - valid date formats in the `bus_date` column
 - positive values for `turnover_sum` and `games_played_sum`
+- no missing values in key operational fields
+- row completeness checks between raw and staging
+- incremental logic validation with future-dated mock rows
 
-This is important because invalid dates or negative/zero operational values often indicate upstream issues in the raw data or a problem in the transformation logic.
+These checks matter because invalid dates, negative operational values, or missing business keys can cause wrong reporting and break downstream logic.
 
-The main example check is in:
+The main example checks are in:
 
 - `gaming_analytics/tests/positive_turnover.sql`
+- `gaming_analytics/tests/raw_to_staging_completeness.sql`
+- `gaming_analytics/models/staging/staging.yml`
 
 The basic rule is:
 
 ```sql
 where turnover_sum <= 0
 ```
+
+The project also validates that the raw-to-staging row counts are complete and that the staging model behaves correctly when newer mock dates are appended.
 
 ---
 
@@ -246,12 +281,13 @@ python .\orchestration\run_pipeline.py
 This script does the following in order:
 
 1. Loads the main challenge file into PostgreSQL as the first raw dataset
-2. Installs the dbt package dependencies
-3. Runs `dbt debug` to confirm the project is configured correctly
-4. Runs `dbt run` to build the staging and mart models
-5. Runs `dbt test` to validate the business checks
+2. Installs Python dependencies from `requirements.txt`
+3. Installs the dbt package dependencies
+4. Runs `dbt debug` to confirm the project is configured correctly
+5. Runs `dbt run` to build the staging and mart models
+6. Runs `dbt test` to validate the business checks
 
-This is the recommended orchestration step in the project flow. For a normal first-time setup, you should load the challenge CSV once with the full replace mode. After that, if you want to test additional rows or mock future dates, append those rows instead of replacing the raw table. That keeps the complete raw history available while letting the incremental staging logic process only the new records.
+This is the recommended orchestration step in the project flow. It is useful because it gives one command that handles the full journey from ingestion to validation. For a normal first-time setup, you should load the challenge CSV once with the full replace mode. After that, if you want to test additional rows or mock future dates, append those rows instead of replacing the raw table. That keeps the complete raw history available while letting the incremental staging logic process only the new records.
 
 If you want to run the steps manually instead of using the script, use:
 
