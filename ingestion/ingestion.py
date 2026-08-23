@@ -68,5 +68,7 @@ def ingest_csv():
     print(f"CSV successfully loaded into PostgreSQL using {LOAD_MODE} mode.")
 
 
+# Run the loader only when this script is started directly.
+# If this file is imported from another script, we do not want it to run automatically.
 if __name__ == "__main__":
     ingest_csv()
