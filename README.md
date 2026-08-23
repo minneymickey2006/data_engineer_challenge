@@ -9,6 +9,8 @@ This project is a small end-to-end data engineering challenge built around a CSV
 
 The goal is to show a practical data pipeline from ingestion to reporting using Python, PostgreSQL, and dbt.
 
+Presentation file: `Gaming_Analytics_Data_Engineering_Final_1.pptx`
+
 ---
 
 ## Project structure
