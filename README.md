@@ -221,7 +221,7 @@ Example cast decisions in the staging model:
 cast(bus_date as date) as bus_date
 cast(turnover_sum as numeric(18,2)) as turnover_sum
 cast(gmp_sum as numeric(18,2)) as gmp_sum
-cast(games_played_sum as integer) as games_played_sum
+cast(games_played_sum as numeric(18,2) as games_played_sum
 ```
 
 This matters because raw CSV values are often read as text or floats, and we want the final warehouse tables to behave consistently and predictably.
