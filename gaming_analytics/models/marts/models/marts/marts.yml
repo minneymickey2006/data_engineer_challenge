@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: venue_turnover
+    description: Total turnover aggregated by venue.
+
+  - name: egm_venue_revenue
+    description: Total GMP revenue aggregated by venue and EGM.
+
+  - name: daily_summary
+    description: Daily summary of turnover, revenue, and games played.

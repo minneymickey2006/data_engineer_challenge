@@ -1,0 +1,45 @@
+[0m18:37:39.970731 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002487CCEDE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002487F49BED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002487F49BB10>]}
+
+
+============================== 18:37:39.974814 | e9ca32bc-9e25-4f1b-8e96-26aeefccde34 ==============================
+[0m18:37:39.974814 [info ] [MainThread]: Running with dbt=1.12.3
+[0m18:37:39.975493 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\ranis\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt deps', 'log_path': 'logs'}
+[0m18:37:39.986515 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\ranis\data_engineer_challenge\orchestration\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m18:37:39.987688 [debug] [MainThread]: Command `dbt deps` failed at 18:37:39.987448 after 0.16 seconds
+[0m18:37:39.988152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002487F4E4D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002487F3669F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002487F4F8AF0>]}
+[0m18:37:39.988690 [debug] [MainThread]: Flushing usage events
+[0m18:37:41.411366 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:23:18.621855 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218FDDEDE80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218FF5CBED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218FF5CBB10>]}
+
+
+============================== 19:23:18.627619 | f47661e0-4352-4dc5-b824-1b9a9053c1b1 ==============================
+[0m19:23:18.627619 [info ] [MainThread]: Running with dbt=1.12.3
+[0m19:23:18.628427 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\ranis\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt clean', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m19:23:18.629433 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\ranis\data_engineer_challenge\orchestration\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m19:23:18.630543 [debug] [MainThread]: Command `dbt clean` failed at 19:23:18.630408 after 0.20 seconds
+[0m19:23:18.630922 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218FF618D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218FF4969F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218FF620AF0>]}
+[0m19:23:18.631322 [debug] [MainThread]: Flushing usage events
+[0m19:23:20.064305 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:44:20.422429 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018E031A9E80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018E0595BED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018E0595BB10>]}
+
+
+============================== 19:44:20.436048 | 585a48e2-7f8d-4d58-969c-5fac39285a1e ==============================
+[0m19:44:20.436048 [info ] [MainThread]: Running with dbt=1.12.3
+[0m19:44:20.437084 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\ranis\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt clean', 'log_path': 'logs'}
+[0m19:44:20.437840 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\ranis\data_engineer_challenge\orchestration\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m19:44:20.438656 [debug] [MainThread]: Command `dbt clean` failed at 19:44:20.438514 after 0.15 seconds
+[0m19:44:20.439061 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018E059A8D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018E058269F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018E059B0AF0>]}
+[0m19:44:20.439494 [debug] [MainThread]: Flushing usage events
+[0m19:44:21.784707 [debug] [MainThread]: An error was encountered while trying to flush usage events

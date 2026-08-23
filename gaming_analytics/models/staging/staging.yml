@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: stg_game_performance
+    description: Cleaned game performance data from the raw source.
+
+    columns:
+      - name: bus_date
+        data_type: date
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: "'1999-01-01'"
+                max_value: "'2026-12-31'"
+
+      - name: venue_code
+        data_type: integer
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 1
+                max_value: 99999
+
+      - name: egm_description
+        data_type: string
+        tests:
+          - not_null
+          - dbt_utils.not_empty_string
+
+      - name: manufacturer
+        data_type: string
+        tests:
+          - not_null
+          - dbt_utils.not_empty_string
+
+      - name: fp
+        data_type: integer
+        tests:
+          - not_null
+
+      - name: turnover_sum
+        data_type: numeric(18,2)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+
+      - name: gmp_sum
+        data_type: numeric(18,2)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: -1000000
+                max_value: 1000000
+
+      - name: games_played_sum
+        data_type: numeric(18,2)
+        tests:
+          - not_null

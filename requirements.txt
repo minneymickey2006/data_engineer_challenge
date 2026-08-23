@@ -1,0 +1,6 @@
+## To run this script run this pip install -r requirements.txt
+pandas
+SQLAlchemy
+psycopg2-binary
+python-dotenv
+dbt-postgres
